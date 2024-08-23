@@ -2,13 +2,17 @@ services:
   app:
     image: e-commerce-app
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=arin980921
+      - SPRING_REDIS_HOST=e-commerce-redis
     depends_on:
       - db
+      - redis
+    networks:
+      - ecommerce-network
 
   db:
     image: mysql:8.0.33
@@ -18,9 +22,19 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./data:/var/lib/mysql  # 호스트와 컨테이너 간의 데이터 공유
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 초기화 스크립트
+      - ./data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+  redis:
+    image: redis:7.0
+    container_name: e-commerce-redis
+    ports:
+      - "6380:6379"
+    networks:
+      - ecommerce-network
 
+networks:
+  ecommerce-network:
+    driver: bridge
 
 volumes:
   db_data:
