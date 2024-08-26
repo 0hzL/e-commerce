@@ -5,18 +5,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SignUpRequestDto {
-
+public class SignUpResponseDto {
+    private int id;
     private String userName;
-    private String password;
     private String phone;
     private String address;
     private String email;
 
 
-    public SignUpRequestDto(String userName, String password, String phone, String address, String email) {
+    public SignUpResponseDto(int id, String email, String userName, String phone, String address) {
+        this.id=id;
         this.userName = userName;
-        this.password = password;
         this.phone = phone;
         this.address = address;
         this.email = email;

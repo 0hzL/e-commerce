@@ -1,21 +1,19 @@
 package com.sparta.ecommerce.domain.user.entity;
 
+import com.sparta.ecommerce.domain.user.dto.SignUpRequestDto;
 import com.sparta.ecommerce.domain.wishlist.entity.Wishlist;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
 public class User {
 
@@ -39,4 +37,19 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Wishlist wishlist;
 
+    public User(String email, String password, String username, String phone, String address) {
+        this.email = email;
+        this.password = password;
+        this.userName = username;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public User(SignUpRequestDto signUpRequestDto) {
+        this.userName = signUpRequestDto.getUserName();
+        this.password = signUpRequestDto.getPassword();
+        this.phone = signUpRequestDto.getPhone();
+        this.address = signUpRequestDto.getAddress();
+        this.email = signUpRequestDto.getEmail();
+    }
 }
