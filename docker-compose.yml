@@ -8,7 +8,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8081:8080"
 
   db:
     image: mysql:8.0.33
@@ -17,11 +17,9 @@ services:
       MYSQL_ROOT_PASSWORD: Abcd123@
       MYSQL_DATABASE: ecommerce
     ports:
-      - "3307:3307"
-    expose:
-      - 3307
+      - "3307:3306"
     healthcheck:
-      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p Abcd123@ || exit 1" ]
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -pAbcd123@ || exit 1" ]
       interval: 10s
       timeout: 5s
       retries: 3

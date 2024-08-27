@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "wishlist")
 public class Wishlist {
 
