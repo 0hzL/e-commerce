@@ -1,8 +1,10 @@
 # 베이스 이미지 지정
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jdk
 
 # 작업 디렉토리 설정
 WORKDIR /app
+
+EXPOSE 8080
 
 # 빌드된 JAR 파일을 컨테이너로 복사
 COPY build/libs/*.jar /app/myapp.jar

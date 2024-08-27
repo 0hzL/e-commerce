@@ -1,34 +1,37 @@
+version: "3.8"
 services:
-  app:
-    image: e-commerce-app
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "8081:8080"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/e-commerce
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=arin980921
-      - SPRING_REDIS_HOST=e-commerce-redis
-    depends_on:
-      - db
-      - redis
-    networks:
-      - ecommerce-network
 
   db:
     image: mysql:8.0.33
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: arin980921
-      MYSQL_DATABASE: e-commerce
+      MYSQL_ROOT_PASSWORD: Abcd123@
+      MYSQL_DATABASE: ecommerce
     ports:
       - "3307:3306"
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -pAbcd123@ || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     volumes:
-      - ./data:/var/lib/mysql
-      - ./initdb:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    networks:
+       - ecommerce-network
   redis:
     image: redis:7.0
     container_name: e-commerce-redis
     ports:
-      - "6380:6379"
+      - "6379:6379"
     networks:
       - ecommerce-network
 
