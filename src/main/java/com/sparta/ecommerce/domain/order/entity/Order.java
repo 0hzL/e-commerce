@@ -1,6 +1,6 @@
-package com.sparta.ecommerce.domain.wishlist.entity;
+package com.sparta.ecommerce.domain.order.entity;
 
-import com.sparta.ecommerce.domain.user.entity.User;
+import com.sparta.ecommerce.domain.item.entity.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,22 +14,33 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "wishlist")
+@Table(name = "order")
 @EntityListeners(AuditingEntityListener.class)
-public class Wishlist {
-
+public class Order {
     @Id
-    @Column(name="wish_id")
+    @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int quantity;
+    private int unitPrice;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @CreatedDate
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
+    private LocalDateTime orderedAt;
+
+    @CreatedDate
+    @Column(updatable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime modifiedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+
 }

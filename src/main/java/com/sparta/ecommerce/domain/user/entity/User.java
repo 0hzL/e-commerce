@@ -10,6 +10,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,8 +38,8 @@ public class User {
 
     private boolean is_email_verified;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Wishlist wishlist;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Wishlist> wishlist = new ArrayList<>();
 
     public User(String email, String password, String username, String phone, String address) {
         this.email = email;
