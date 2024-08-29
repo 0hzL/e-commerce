@@ -1,5 +1,6 @@
 package com.sparta.ecommerce.domain.wishlist.entity;
 
+import com.sparta.ecommerce.domain.item.entity.Item;
 import com.sparta.ecommerce.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,4 +33,8 @@ public class Wishlist {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 }

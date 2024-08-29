@@ -38,6 +38,6 @@ public class Delivery {
 
     @OneToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order orders;
 
 }

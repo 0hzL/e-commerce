@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "order")
+@Table(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
 public class Order {
     @Id
@@ -26,7 +26,7 @@ public class Order {
     private int unitPrice;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private Status status;
 
     @CreatedDate
     @Column(updatable = false)

@@ -20,9 +20,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-    //회원가입
+    /* 회원가입 (개인정보 암호화해야함) */
     public SignUpResponseDto signUp(SignUpRequestDto requestDto) {
-        //이메일 본인인증해야함
         String email = requestDto.getEmail();
         String password = passwordEncoder.encode(requestDto.getPassword());
         String username = requestDto.getUserName();
@@ -39,12 +38,10 @@ public class UserService {
             throw new IllegalArgumentException("이미 존재하는 이름입니다.");
         }
 
-
         Optional<User> checkPhone = userRepository.findByPhone(phone);
         if (checkPhone.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 번호입니다.");
         }
-
 
         User user = new User(email, password, username,phone,address);
         User savedUser = userRepository.save(user);
@@ -56,5 +53,15 @@ public class UserService {
                 savedUser.getAddress());
     }
 
-    //로그인
+    /* 로그인 */
+
+    /* 인증번호 업데이트 */
+    public void updateEmailIsVerfied(String email, boolean isVerified) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent()) {
+            User savedUser = user.get();
+            savedUser.set_email_verified(isVerified);
+            userRepository.save(savedUser);
+        }
+    }
 }

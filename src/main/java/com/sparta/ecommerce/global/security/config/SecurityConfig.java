@@ -1,4 +1,4 @@
-package com.sparta.ecommerce.global.config;
+package com.sparta.ecommerce.global.security.config;
 
 
 import org.springframework.context.annotation.Bean;

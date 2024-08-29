@@ -42,7 +42,7 @@ public class Item {
     private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private List<Order> order = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
     private Wishlist wishlist;
