@@ -17,7 +17,6 @@ public class RedisService {
         redisTemplate.opsForValue().set(email,verificationCode,3, TimeUnit.MINUTES);
     }
 
-
     /* 저장된 인증번호 확인 */
     public String getVerificationCode(String email){
         String verificationCode = redisTemplate.opsForValue().get(email);
@@ -25,6 +24,11 @@ public class RedisService {
             throw new RuntimeException("다시 인증해주세요");
         }
         return verificationCode;
+    }
+
+    /* 인증 성공 시 삭제 */
+    public void deleteVerficationCode(String email){
+        redisTemplate.delete(email);
     }
 
 }

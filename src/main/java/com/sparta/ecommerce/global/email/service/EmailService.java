@@ -45,7 +45,7 @@ public class EmailService {
             redisService.deleteVerficationCode(email);
             return true;
         } else{
-            false;
+           return false;
         }
     }
 
