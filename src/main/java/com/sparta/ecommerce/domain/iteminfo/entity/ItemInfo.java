@@ -1,5 +1,6 @@
 package com.sparta.ecommerce.domain.iteminfo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.ecommerce.domain.item.entity.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,5 +25,6 @@ public class ItemInfo {
 
     @OneToOne
     @JoinColumn(name = "item_id")
+    @JsonIgnore
     private Item item;
 }
