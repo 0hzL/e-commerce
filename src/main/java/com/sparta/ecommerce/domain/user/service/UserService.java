@@ -53,7 +53,6 @@ public class UserService {
                 savedUser.getAddress());
     }
 
-    /* 로그인 */
 
     /* 인증번호 업데이트 */
     public void updateEmailIsVerfied(String email, boolean isVerified) {

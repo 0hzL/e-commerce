@@ -16,6 +16,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Abcd123@
       MYSQL_DATABASE: ecommerce
+      MYSQL_INITDB_SKIP_TZINFO: 1
     ports:
       - "3307:3306"
     healthcheck:
@@ -24,7 +25,7 @@ services:
       timeout: 5s
       retries: 3
     volumes:
-      - db_data:/var/lib/mysql
+      - e-commerce_db_data:/var/lib/mysql
     networks:
        - ecommerce-network
   redis:
@@ -40,4 +41,4 @@ networks:
     driver: bridge
 
 volumes:
-  db_data:
+  e-commerce_db_data:
