@@ -3,7 +3,7 @@ package com.sparta.ecommerce.domain.item.entity;
 import com.sparta.ecommerce.domain.iteminfo.entity.ItemInfo;
 import com.sparta.ecommerce.domain.order.entity.Order;
 import com.sparta.ecommerce.domain.stock.entity.Stock;
-import com.sparta.ecommerce.domain.wishlist.entity.Wishlist;
+import com.sparta.ecommerce.domain.wishlistitem.entity.WishlistItem;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class Item {
     @Id
     @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String itemName;
     private int price;
@@ -45,8 +45,8 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
-    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
-    private Wishlist wishlist;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<WishlistItem> wishlistItem;
 
     @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
     private Stock stock;

@@ -21,7 +21,7 @@ public class Delivery {
     @Id
     @Column(name="delivery_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Enumerated(EnumType.STRING)
     private Status status;

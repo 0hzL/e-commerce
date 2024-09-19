@@ -24,7 +24,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable);
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/user/signup","/sendverificationcode","/item/**","/iteminfo/**").permitAll() // 누구나 접근 가능
+                        .requestMatchers("/", "/user/signup","/sendverificationcode",
+                                "/item/**","/iteminfo/**","/stock/**").permitAll() // 누구나 접근 가능
                         .anyRequest().authenticated()
                 );
 //                .formLogin((form) -> form

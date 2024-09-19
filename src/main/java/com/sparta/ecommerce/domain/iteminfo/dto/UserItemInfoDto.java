@@ -5,8 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemInfoRegisterDto {
+public class UserItemInfoDto {
     private long ItemId;
+    private String ItemName;
     private String information;
     private int unitPrice;
+
 }
