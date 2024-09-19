@@ -1,12 +1,10 @@
 package com.sparta.ecommerce.domain.iteminfo.controller;
 
+import com.sparta.ecommerce.domain.iteminfo.dto.UserItemInfoDto;
 import com.sparta.ecommerce.domain.iteminfo.entity.ItemInfo;
 import com.sparta.ecommerce.domain.iteminfo.service.ItemInfoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,4 +19,9 @@ public class ItemInfoController {
         return itemInfoService.getItemInfo(itemId);
     }
 
+    /* 위시리스트에서 선택한 제품의 상세 정보 */
+    @GetMapping("/{itemId}")
+    public UserItemInfoDto getSelectItemInfo(@PathVariable int itemId){
+        return itemInfoService.getSelectItemInfo(itemId);
+    }
 }

@@ -25,7 +25,7 @@ public class StockService {
     }
 
     /* 재고 업데이트 */
-    public void updateStock(int itemId, int stockQuantity) {
+    public void updateStock(long itemId, int stockQuantity) {
        Stock stock = stockRepository.findById(itemId).orElseThrow();
        stock.setStockQuantity(stockQuantity);
        stockRepository.save(stock);

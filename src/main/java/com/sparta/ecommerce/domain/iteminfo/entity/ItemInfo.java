@@ -1,6 +1,5 @@
 package com.sparta.ecommerce.domain.iteminfo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.ecommerce.domain.item.entity.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,13 +17,13 @@ public class ItemInfo {
     @Id
     @Column(name="info_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String information;
     private int unitPrice;
 
     @OneToOne
     @JoinColumn(name = "item_id")
-    @JsonIgnore
+//    @JsonIgnore
     private Item item;
 }

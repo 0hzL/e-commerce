@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class StockDto {
 
-    private int itemId;
+    private long itemId;
     private int stockQuantity;
 }

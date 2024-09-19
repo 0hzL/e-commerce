@@ -20,7 +20,7 @@ public class Order {
     @Id
     @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private int quantity;
     private int unitPrice;
