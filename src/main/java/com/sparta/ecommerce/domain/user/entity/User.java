@@ -36,8 +36,6 @@ public class User {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    private boolean is_email_verified;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Wishlist> wishlist = new ArrayList<>();
 
