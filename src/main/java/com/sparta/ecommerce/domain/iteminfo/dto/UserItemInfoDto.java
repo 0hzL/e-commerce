@@ -11,4 +11,12 @@ public class UserItemInfoDto {
     private String information;
     private int unitPrice;
 
+    public UserItemInfoDto(Long id, String itemName, int price, String information) {
+        this.ItemId = id;
+        this.ItemName = itemName;
+        this.unitPrice = price;
+        this.information = information;
+    }
+
 }
+

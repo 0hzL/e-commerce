@@ -1,5 +1,6 @@
 package com.sparta.ecommerce.domain.item.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.ecommerce.domain.iteminfo.entity.ItemInfo;
 import com.sparta.ecommerce.domain.order.entity.Order;
 import com.sparta.ecommerce.domain.stock.entity.Stock;
@@ -52,6 +53,8 @@ public class Item {
     private Stock stock;
 
     @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_info_id")
+    @JsonManagedReference
     private ItemInfo itemInfo;
 
 
