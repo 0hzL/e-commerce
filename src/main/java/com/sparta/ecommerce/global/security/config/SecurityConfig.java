@@ -1,6 +1,7 @@
 package com.sparta.ecommerce.global.security.config;
 
 
+import com.sparta.ecommerce.global.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -19,21 +21,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable);
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/user/signup","/sendverificationcode",
-                                "/item/**","/iteminfo/**","/stock/**").permitAll() // 누구나 접근 가능
+                        .requestMatchers("/", "/user/signup","/auth/**","/sendverificationcode","/email/checkverificationcode",
+                                "/item/**","/iteminfo/**","/stock/**","/email/**", "/user/**").permitAll() // 누구나 접근 가능
                         .anyRequest().authenticated()
-                );
-//                .formLogin((form) -> form
-//                        .loginPage("/login") // 커스텀 로그인 페이지
-//                        .permitAll()
-//                )
-//                .logout((logout) -> logout.permitAll()); // 로그아웃도 누구나 접근 가능
-
+                ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

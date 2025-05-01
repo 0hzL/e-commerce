@@ -28,7 +28,7 @@ public class WishlistItemService {
     public WishlistItem createWishlistItem(long userId, Item item, int quantity) {
 
         Wishlist wishlist = getWishlistByUserId(userId);
-        //추우에 아이템 노출 api부분에서 재고가 없을때 노출 x 조건 걸어야함
+        //추후에 아이템 노출 api부분에서 재고가 없을때 노출 x 조건 걸어야함
         Optional<WishlistItem> existingItem = wishlistItemByItemId(item.getId(),wishlist);
 
         if (existingItem.isPresent()) {

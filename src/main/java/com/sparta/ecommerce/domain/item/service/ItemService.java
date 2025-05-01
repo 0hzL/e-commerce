@@ -54,6 +54,11 @@ public class ItemService {
                 .collect(Collectors.toList());
     }
 
+    /* 아이템 전체 리스트 */
+    public List<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
+
 
 
     /* 공통 메서드 - 아이템 재고 확인 후 노출 여부 */

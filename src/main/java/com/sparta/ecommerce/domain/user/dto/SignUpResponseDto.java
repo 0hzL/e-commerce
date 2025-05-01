@@ -1,5 +1,6 @@
 package com.sparta.ecommerce.domain.user.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class SignUpResponseDto {
     private String email;
 
 
+    @Builder
     public SignUpResponseDto(long id, String email, String userName, String phone, String address) {
         this.id=id;
         this.userName = userName;

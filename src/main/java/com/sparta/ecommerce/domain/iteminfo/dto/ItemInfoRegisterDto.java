@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class ItemInfoRegisterDto {
     private long ItemId;
     private String information;

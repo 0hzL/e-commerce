@@ -1,13 +1,13 @@
 package com.sparta.ecommerce.domain.item.controller;
 
 import com.sparta.ecommerce.domain.item.dto.ItemRegisterDto;
+import com.sparta.ecommerce.domain.item.entity.Item;
 import com.sparta.ecommerce.domain.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +24,11 @@ public class ItemController {
         return ResponseEntity.ok("아이템 등록 완료 !");
     }
 
-
+    /* 아이템 리스트 */
+    @GetMapping("")
+    public List<Item> allItemList(){
+        return itemService.getAllItems();
+    }
 
 
 }
